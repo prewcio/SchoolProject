@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/login', function () {
+    return view('logreg');
+});
+Route::get('/register', function () {
+    return view('logreg');
+});
+Route::get('/{user}', 'App\Http\Controllers\AccountController@index');
