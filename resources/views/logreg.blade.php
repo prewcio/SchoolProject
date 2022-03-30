@@ -17,7 +17,7 @@
 <body>
     <div id="app">
         <main class="py-3">
-            <h3>Laravel Vue</h3>
+            <navbar></navbar>
             <logreg></logreg>
         </main>
     </div>
