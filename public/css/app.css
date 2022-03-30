@@ -21,6 +21,38 @@ body {
   font-family: Bigilla;
 }
 
+.navbar {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  padding: 20px 30px;
+  color: #DFD3C3;
+  background-color: rgb(10, 10, 10);
+}
+
+.navbar .logo {
+  font-size: 1.5em;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar ul li {
+  list-style: none;
+  padding: 10px;
+}
+
+.navbar ul li a {
+  color: #DFD3C3;
+  text-decoration: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
 .container {
   display: flex;
   align-items: center;
