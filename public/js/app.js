@@ -5287,15 +5287,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   }
 });
 
@@ -5340,16 +5334,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LogReg",
   data: function data() {
     return {
       error: 0,
       success: 0,
-      logreg: '/register',
-      email: '',
-      password: '',
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      logreg: "/register",
+      email: "",
+      password: "",
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
   mounted: function mounted() {
@@ -5368,10 +5381,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return fetch('/api/loginCheck', {
-                  method: 'POST',
+                return fetch("/api/loginCheck", {
+                  method: "POST",
                   headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                   },
                   body: JSON.stringify({
                     login: _this.login,
@@ -5403,8 +5416,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     checkIfLogged: function checkIfLogged() {
-      axios.post('/api/checkLogged', {
-        'token': this.csrf
+      axios.post("/api/checkLogged", {
+        token: this.csrf
       }).then(function (response) {
         if (response.data.success == 1) {
           window.location.href = "/" + data.username;
@@ -5423,10 +5436,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return fetch('/api/registerCheck', {
-                  method: 'POST',
+                return fetch("/api/registerCheck", {
+                  method: "POST",
                   headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                   },
                   body: JSON.stringify({
                     login: _this2.login,
@@ -28914,20 +28927,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
-          ]),
+      _c("div", { staticClass: "home" }, [
+        _c("h1", [
+          _vm._v("Darmowy, ciekawy i skuteczny sposób na naukę języka!"),
         ]),
+        _vm._v(" "),
+        _c("button", [_vm._v("Rozpocznij")]),
+        _vm._v(" "),
+        _c("button", [_vm._v("Mam juz konto")]),
       ]),
     ])
   },
@@ -28954,161 +28961,179 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "form" }, [
-    _vm.logreg === "/login"
-      ? _c(
-          "form",
-          {
-            on: {
-              submit: function ($event) {
-                $event.preventDefault()
-                return _vm.loginForm.apply(null, arguments)
-              },
-            },
-          },
-          [
-            _c("h1", [_vm._v("Logowanie")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.login,
-                  expression: "login",
-                },
-              ],
-              attrs: { type: "text", name: "login" },
-              domProps: { value: _vm.login },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.login = $event.target.value
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "bg" }, [
+      _c("div", { staticClass: "form" }, [
+        _vm.logreg === "/login"
+          ? _c(
+              "form",
+              {
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.loginForm.apply(null, arguments)
+                  },
                 },
               },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.password,
-                  expression: "password",
-                },
-              ],
-              attrs: { type: "password", name: "password" },
-              domProps: { value: _vm.password },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.password = $event.target.value
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "submit", value: "Zaloguj" } }),
-            _vm._v(" "),
-            _vm.error === 1
-              ? _c("p", { staticStyle: { color: "red" } }, [
-                  _vm._v("Konto nie istnieje"),
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.error === 2
-              ? _c("p", { staticStyle: { color: "red" } }, [
-                  _vm._v("Błędny login lub hasło"),
-                ])
-              : _vm._e(),
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.logreg === "/register"
-      ? _c(
-          "form",
-          {
-            on: {
-              submit: function ($event) {
-                $event.preventDefault()
-                return _vm.registerForm.apply(null, arguments)
-              },
-            },
-          },
-          [
-            _c("h1", [_vm._v("Rejestracja")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.login,
-                  expression: "login",
-                },
-              ],
-              attrs: { type: "text", name: "login" },
-              domProps: { value: _vm.login },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.login = $event.target.value
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.email,
-                  expression: "email",
-                },
-              ],
-              attrs: { type: "email", name: "email" },
-              domProps: { value: _vm.email },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.email = $event.target.value
+              [
+                _c("h1", [_vm._v("Logowanie")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.login,
+                      expression: "login",
+                    },
+                  ],
+                  attrs: { type: "text", placeholder: "Login", name: "login" },
+                  domProps: { value: _vm.login },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.login = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.password,
+                      expression: "password",
+                    },
+                  ],
+                  attrs: {
+                    type: "password",
+                    placeholder: "Password",
+                    name: "password",
+                  },
+                  domProps: { value: _vm.password },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.password = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", { attrs: { type: "submit", value: "Zaloguj" } }),
+                _vm._v(" "),
+                _vm.error === 1
+                  ? _c("p", { staticStyle: { color: "red" } }, [
+                      _vm._v("Konto nie istnieje"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.error === 2
+                  ? _c("p", { staticStyle: { color: "red" } }, [
+                      _vm._v("Błędny login lub hasło"),
+                    ])
+                  : _vm._e(),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.logreg === "/register"
+          ? _c(
+              "form",
+              {
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.registerForm.apply(null, arguments)
+                  },
                 },
               },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.password,
-                  expression: "password",
-                },
-              ],
-              attrs: { type: "password", name: "password" },
-              domProps: { value: _vm.password },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.password = $event.target.value
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "submit", value: "Zarejestruj" } }),
-          ]
-        )
-      : _vm._e(),
+              [
+                _c("h1", [_vm._v("Rejestracja")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.login,
+                      expression: "login",
+                    },
+                  ],
+                  attrs: { type: "text", name: "login", placeholder: "Login" },
+                  domProps: { value: _vm.login },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.login = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.email,
+                      expression: "email",
+                    },
+                  ],
+                  attrs: {
+                    type: "email",
+                    name: "email",
+                    placeholder: "E-mail",
+                  },
+                  domProps: { value: _vm.email },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.email = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.password,
+                      expression: "password",
+                    },
+                  ],
+                  attrs: {
+                    type: "password",
+                    name: "password",
+                    placeholder: "Password",
+                  },
+                  domProps: { value: _vm.password },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.password = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "submit", value: "Zarejestruj" },
+                }),
+              ]
+            )
+          : _vm._e(),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []
