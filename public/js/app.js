@@ -5287,6 +5287,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     redirect: function redirect(params) {
@@ -5295,8 +5297,8 @@ __webpack_require__.r(__webpack_exports__);
     checkIfLogged: function checkIfLogged() {
       var _this = this;
 
-      axios.post('/api/checkLogged', {
-        'token': this.csrf
+      axios.post("/api/checkLogged", {
+        token: this.csrf
       }).then(function (response) {
         console.log(response.data);
 
@@ -5344,14 +5346,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ExerTest",
   data: function data() {
     return {
       success: 0,
-      currentUrl: '',
-      userName: '',
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      currentUrl: "",
+      userName: "",
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
   mounted: function mounted() {
@@ -5366,8 +5370,8 @@ __webpack_require__.r(__webpack_exports__);
     checkIfLogged: function checkIfLogged() {
       var _this = this;
 
-      axios.post('/api/checkLogged', {
-        'token': this.csrf
+      axios.post("/api/checkLogged", {
+        token: this.csrf
       }).then(function (response) {
         console.log(response.data);
 
@@ -5406,6 +5410,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -29209,33 +29219,33 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "home" }, [
-      _c("h1", [
-        _vm._v("Darmowy, ciekawy i skuteczny sposób na naukę języka!"),
+      _c("h1", [_vm._v("Free site to learn language!")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "buttons" }, [
+        _c(
+          "button",
+          {
+            on: {
+              click: function ($event) {
+                return _vm.redirect("register")
+              },
+            },
+          },
+          [_vm._v("START")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function ($event) {
+                return _vm.redirect("login")
+              },
+            },
+          },
+          [_vm._v("LOGIN")]
+        ),
       ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function ($event) {
-              return _vm.redirect("register")
-            },
-          },
-        },
-        [_vm._v("Rozpocznij")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function ($event) {
-              return _vm.redirect("login")
-            },
-          },
-        },
-        [_vm._v("Mam juz konto")]
-      ),
     ]),
   ])
 }
@@ -29263,38 +29273,40 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return this.success === 1
-    ? _c("div", { staticClass: "container" }, [
-        this.currentUrl === "/" + this.userName + "/exercise"
-          ? _c("div", [_c("h1", [_vm._v("Exercises")])])
-          : this.currentUrl === "/" + this.userName + "/test"
-          ? _c("div", [_c("h1", [_vm._v("Tests")])])
-          : _c("div", [
-              _c("h1", [_vm._v("Select Page")]),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function ($event) {
-                      return _vm.redirect("exercise")
+    ? _c("div", { staticClass: "container test" }, [
+        _c("div", { staticClass: "exeTest" }, [
+          this.currentUrl === "/" + this.userName + "/exercise"
+            ? _c("div", [_c("h1", [_vm._v("Exercises")])])
+            : this.currentUrl === "/" + this.userName + "/test"
+            ? _c("div", [_c("h1", [_vm._v("Tests")])])
+            : _c("div", [
+                _c("h1", [_vm._v("Select Page")]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.redirect("exercise")
+                      },
                     },
                   },
-                },
-                [_vm._v("Exercise")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function ($event) {
-                      return _vm.redirect("test")
+                  [_vm._v("Exercise")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.redirect("test")
+                      },
                     },
                   },
-                },
-                [_vm._v("Test")]
-              ),
-            ]),
+                  [_vm._v("Test")]
+                ),
+              ]),
+        ]),
       ])
     : _vm._e()
 }
@@ -29384,7 +29396,10 @@ var render = function () {
                   },
                 }),
                 _vm._v(" "),
-                _c("input", { attrs: { type: "submit", value: "Zaloguj" } }),
+                _c("input", {
+                  staticClass: "btn-form",
+                  attrs: { type: "submit", value: "Zaloguj" },
+                }),
                 _vm._v(" "),
                 _vm.error === 1
                   ? _c("p", { staticStyle: { color: "red" } }, [
@@ -29400,20 +29415,24 @@ var render = function () {
                 _vm._v(" "),
                 _vm.error === 3
                   ? _c("p", { staticStyle: { color: "red" } }, [
-                      _vm._v("Tym Pawłem to idź kablować"),
+                      _vm._v(
+                        "\n          Tym Pawłem to idź kablować\n        "
+                      ),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.error === 4
                   ? _c("p", { staticStyle: { color: "red" } }, [
-                      _vm._v("Domsky kopsnij cssa (TSI 2k20-2k21)"),
+                      _vm._v(
+                        "\n          Domsky kopsnij cssa (TSI 2k20-2k21)\n        "
+                      ),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.error === 5
                   ? _c("p", { staticStyle: { color: "red" } }, [
                       _vm._v(
-                        "Ten to tylko się przykleja żeby ocenkę za darmo dostać"
+                        "\n          Ten to tylko się przykleja żeby ocenkę za darmo dostać\n        "
                       ),
                     ])
                   : _vm._e(),
@@ -29507,6 +29526,7 @@ var render = function () {
                 }),
                 _vm._v(" "),
                 _c("input", {
+                  staticClass: "btn-form",
                   attrs: { type: "submit", value: "Zarejestruj" },
                 }),
               ]
@@ -29554,7 +29574,7 @@ var render = function () {
                 },
               },
             },
-            [_vm._v("Rozpocznij")]
+            [_vm._v("START")]
           ),
         ]),
         _vm._v(" "),
@@ -29568,7 +29588,7 @@ var render = function () {
                 },
               },
             },
-            [_vm._v("Mam juz konto")]
+            [_vm._v("LOGIN")]
           ),
         ]),
       ]),
@@ -29580,7 +29600,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "logo" }, [_c("h1", [_vm._v("Logo")])])
+    return _c("div", { staticClass: "logo" }, [
+      _c("h2", [_c("a", { attrs: { href: "/" } }, [_vm._v("Logo")])]),
+    ])
   },
 ]
 render._withStripped = true

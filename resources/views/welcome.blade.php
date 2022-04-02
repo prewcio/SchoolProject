@@ -17,7 +17,7 @@
 </head>
 <body>
     <div id="app">
-        <main class="py-3">
+        <main>
             <navbar></navbar>
             <example-component></example-component>
         </main>

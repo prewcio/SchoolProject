@@ -1,12 +1,12 @@
 <template>
   <div class="navbar">
     <div class="logo">
-      <h1>Logo</h1>
+      <h2><a href="/">Logo</a></h2>
     </div>
     <nav>
       <ul>
-        <li><a @click="redirect('register')">Rozpocznij</a></li>
-        <li><a @click="redirect('login')">Mam juz konto</a></li>
+        <li><a @click="redirect('register')">START</a></li>
+        <li><a @click="redirect('login')">LOGIN</a></li>
       </ul>
     </nav>
   </div>

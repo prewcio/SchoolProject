@@ -1,24 +1,32 @@
-@font-face {
-    font-family: Bigilla;
-    src: url(../fonts/Bigilla.otf);
-}
-
-@font-face {
-    font-family: Mon;
-    src: url(../fonts/MonumentExtended-Regular.otf);
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --color-dark: #40407a;
+    --color-light: #706fd3;
+    --color-dark2: #2c2c54;
 }
 
 body {
-    background-color: #0F0E0E;
+    background-color: var(--color-dark);
+    color: var(--color-dark);
     width: 100%;
     height: 100%;
-    font-family: Bigilla;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-light);
+}
+
+a:hover {
+    color: var(--color-light);
 }
 
 .navbar {
@@ -29,12 +37,18 @@ body {
     height: 100px;
     width: 100%;
     padding: 20px 30px;
-    color: #DFD3C3;
-    background-color: rgb(10, 10, 10);
+    color: var(--color-light);
+    background-color: var(--color-dark2);
 }
 
 .navbar .logo {
     font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar .logo h2 {
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .navbar ul {
@@ -47,10 +61,11 @@ body {
 }
 
 .navbar ul li a {
-    color: #DFD3C3;
+    color: var(--color-light);
     text-decoration: none;
     font-size: 1.5em;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .container {
@@ -62,24 +77,28 @@ body {
 }
 
 .home h1 {
-    font-family: Mon;
-    padding-bottom: 20px;
     text-align: center;
-    color: #DFD3C3;
-    font-size: 1.5em;
+    color: var(--color-light);
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 50px;
 }
 
 .home button {
-    border: 2px solid #DFD3C3;
-    color: #DFD3C3;
-    background-color: transparent;
+    border: none;
+    color: var(--color-dark2);
+    background-color: var(--color-light);
     outline: none;
     padding: 10px 20px;
     margin: 10px;
-    width: 200px;
+    width: 250px;
     font-size: 1.5em;
-    font-family: Bigilla;
     cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+    border-radius: 20px;
+    box-shadow: 0px 5px 0px var(--color-dark2);
+    text-transform: uppercase;
 }
 
 .home {
@@ -91,6 +110,11 @@ body {
     margin: 12px auto 0;
 }
 
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
 .form form {
     display: flex;
     align-items: center;
@@ -99,24 +123,73 @@ body {
 }
 
 .form form h1 {
-    color: #DFD3C3;
+    color: var(--color-dark);
     margin: 13px auto;
     font-size: 4em;
 }
+
 .form form input {
     padding: 10px 20px;
     border-radius: 20px;
     outline: none;
     border: none;
     margin: 20px auto;
-    background-color: #ffffff15;
-    color: #DFD3C3;
-    font-family: Mon;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
 .form form input::placeholder {
-    color: #DFD3C3;
-    font-family: Mon;
+    color: var(--color-dark);
+}
+
+.btn-form {
+    border: 4px solid var(--color-dark2);
+    color: var(--color-dark2);
+    background-color: transparent;
+    outline: none;
+    padding: 10px 20px;
+    margin: 10px;
+    width: 100%;
+    font-size: 1.5em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+    box-shadow: 0px 5px 0px var(--color-dark2);
+    text-transform: uppercase;
+}
+
+.test button {
+    border: none;
+    color: var(--color-dark2);
+    background-color: var(--color-light);
+    outline: none;
+    padding: 10px 20px;
+    margin: 10px;
+    width: 250px;
+    font-size: 1.5em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+    box-shadow: 0px 5px 0px var(--color-dark2);
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.exeTest {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.exeTest h1 {
+    text-align: center;
+    color: var(--color-light);
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 50px;
 }
 
 @media screen and (max-width:768px) {
