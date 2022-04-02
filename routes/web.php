@@ -22,4 +22,8 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('logreg');
 });
-Route::get('/{user}', 'App\Http\Controllers\AccountController@index');
+Route::get('/{user}', 'App\Http\Controllers\AccountController@ExerTest');
+
+Route::get('/{user}/exercise', 'App\Http\Controllers\AccountController@ExerTest');
+
+Route::get('/{user}/test', 'App\Http\Controllers\AccountController@ExerTest');

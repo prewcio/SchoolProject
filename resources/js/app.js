@@ -22,6 +22,7 @@ window.Vue = require('vue').default;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('logreg', require('./components/LogReg.vue').default);
 Vue.component('navbar', require('./components/Navbar.vue').default);
+Vue.component('exertest', require('./components/ExerTest').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

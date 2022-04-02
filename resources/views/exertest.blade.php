@@ -19,7 +19,7 @@
     <div id="app">
         <main class="py-3">
             <navbar></navbar>
-            <example-component></example-component>
+            <exertest></exertest>
         </main>
     </div>
 </body>

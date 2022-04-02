@@ -14,6 +14,9 @@
           <input type="submit" value="Zaloguj" />
           <p style="color: red" v-if="error === 1">Konto nie istnieje</p>
           <p style="color: red" v-if="error === 2">Błędny login lub hasło</p>
+          <p style="color: red" v-if="error===3">Tym Pawłem to idź kablować</p>
+          <p style="color: red" v-if="error===4">Domsky kopsnij cssa (TSI 2k20-2k21)</p> 
+          <p style="color: red" v-if="error===5">Ten to tylko się przykleja żeby ocenkę za darmo dostać</p> 
         </form>
         <form @submit.prevent="registerForm" v-if="logreg === '/register'">
           <h1>Rejestracja</h1>
@@ -70,6 +73,13 @@ export default {
       });
       const data = await res.json();
       this.error = data.error;
+      if(this.login==="PawelBartosiewicz"){
+          this.error = 3;
+      } else if(this.login==="Domsky"){
+          this.error = 4;
+      } else if(this.login==="Jeremi"){
+          this.error = 5;
+      }
       this.success = data.success;
       if (this.success === 1) {
         window.location.href = "/" + data.username;

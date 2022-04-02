@@ -1,0 +1,127 @@
+@font-face {
+    font-family: Bigilla;
+    src: url(../fonts/Bigilla.otf);
+}
+
+@font-face {
+    font-family: Mon;
+    src: url(../fonts/MonumentExtended-Regular.otf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0F0E0E;
+    width: 100%;
+    height: 100%;
+    font-family: Bigilla;
+}
+
+.navbar {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    padding: 20px 30px;
+    color: #DFD3C3;
+    background-color: rgb(10, 10, 10);
+}
+
+.navbar .logo {
+    font-size: 1.5em;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar ul li {
+    list-style: none;
+    padding: 10px;
+}
+
+.navbar ul li a {
+    color: #DFD3C3;
+    text-decoration: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.home h1 {
+    font-family: Mon;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #DFD3C3;
+    font-size: 1.5em;
+}
+
+.home button {
+    border: 2px solid #DFD3C3;
+    color: #DFD3C3;
+    background-color: transparent;
+    outline: none;
+    padding: 10px 20px;
+    margin: 10px;
+    width: 200px;
+    font-size: 1.5em;
+    font-family: Bigilla;
+    cursor: pointer;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    margin: 12px auto 0;
+}
+
+.form form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form form h1 {
+    color: #DFD3C3;
+    margin: 13px auto;
+    font-size: 4em;
+}
+.form form input {
+    padding: 10px 20px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin: 20px auto;
+    background-color: #ffffff15;
+    color: #DFD3C3;
+    font-family: Mon;
+}
+
+.form form input::placeholder {
+    color: #DFD3C3;
+    font-family: Mon;
+}
+
+@media screen and (max-width:768px) {
+    .container {
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -81,7 +81,8 @@ class LogRegController extends Controller
         $student = Student::where('sessionID',$token)->first();
         if($student){
             return response()->json([
-                'success'=>1
+                'success'=>1,
+                'username'=>$student->login
             ]);
         }
     }
