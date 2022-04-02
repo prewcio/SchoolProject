@@ -22,3 +22,4 @@ Route::post('checkLogged', 'App\Http\Controllers\Api\LogRegController@checkLogge
 Route::post('loginCheck', 'App\Http\Controllers\Api\LogRegController@checkLogin');
 Route::post('registerCheck', 'App\Http\Controllers\Api\LogRegController@registerCheck');
 Route::post('logout', 'App\Http\Controllers\Api\LogRegController@logout');
+Route::get('/{exerciseLang}/getWords', 'App\Http\Controllers\Api\ExerTestController@GetExercises');

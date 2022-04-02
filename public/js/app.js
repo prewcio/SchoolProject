@@ -5348,27 +5348,146 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ExerTest",
   data: function data() {
     return {
       success: 0,
+      correct: 0,
+      score: 0,
+      scorePrec: 0,
+      question: 0,
       currentUrl: "",
       userName: "",
+      currentWord: "",
+      pass: "no",
+      translatedWord: "",
+      insWord: "",
+      wordsPool: [],
+      transWordsPool: [],
+      excludeWordsExer: [],
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.checkIfLogged();
+    axios.get("/api/en/getWords").then(function (response) {
+      _this.wordsPool = response.data.words;
+      _this.transWordsPool = response.data.translated;
+
+      _this.exercises();
+
+      _this.test();
+    });
     this.currentUrl = window.location.pathname;
   },
   methods: {
+    exercises: function exercises() {
+      this.correct = 0;
+      this.$refs.insWord.value = "";
+      this.$refs.insWord.disabled = false;
+      var rand = Math.floor(Math.random() * 45);
+
+      if (!this.excludeWordsExer.includes(this.wordsPool[rand])) {
+        this.currentWord = this.wordsPool[rand].charAt(0).toUpperCase() + this.wordsPool[rand].slice(1);
+        this.translatedWord = this.transWordsPool[rand].charAt(0).toUpperCase() + this.transWordsPool[rand].slice(1);
+      } else {
+        this.exercises();
+      }
+    },
+    exerciseCheck: function exerciseCheck() {
+      var word = this.$refs.insWord.value;
+      this.$refs.insWord.disabled = true;
+
+      if (this.translatedWord.toLowerCase() === word.toLowerCase()) {
+        this.correct = 1;
+      } else {
+        this.correct = -1;
+      }
+    },
+    excludeExercise: function excludeExercise(word) {
+      if (this.correct === 1) {
+        this.excludeWordsExer.push(word);
+      }
+
+      console.log(this.excludeWordsExer.length);
+      console.log(this.excludeWordsExer);
+
+      if (this.excludeWordsExer.length < this.wordsPool.length) {
+        this.exercises();
+      } else {
+        this.correct = 2;
+      }
+    },
+    test: function test() {
+      this.$refs.insWord.value = "";
+      this.$refs.insWord.disabled = false;
+      var rand = Math.floor(Math.random() * 45);
+
+      if (!this.excludeWordsExer.includes(this.wordsPool[rand])) {
+        this.currentWord = this.wordsPool[rand].charAt(0).toUpperCase() + this.wordsPool[rand].slice(1);
+        this.translatedWord = this.transWordsPool[rand].charAt(0).toUpperCase() + this.transWordsPool[rand].slice(1);
+      } else {
+        this.test();
+      }
+    },
+    testCheck: function testCheck() {
+      var word = this.$refs.insWord.value;
+      this.$refs.insWord.disabled = true;
+
+      if (this.translatedWord.toLowerCase() === word.toLowerCase()) {
+        this.score++;
+      }
+
+      this.excludeTest(this.currentWord.toLowerCase());
+      this.question++;
+    },
+    excludeTest: function excludeTest(word) {
+      this.excludeWordsExer.push(word);
+      console.log(this.excludeWordsExer.length);
+      console.log(this.excludeWordsExer);
+
+      if (this.excludeWordsExer.length < this.wordsPool.length) {
+        this.test();
+      } else {
+        this.correct = 2;
+        this.scorePrec = Math.floor(this.score / this.wordsPool.length * 100);
+        console.log(Math.floor(this.score / this.wordsPool.length * 100));
+
+        if (this.scorePrec > 55) {
+          this.pass = "Passed";
+        } else {
+          this.pass = "Failed";
+        }
+      }
+    },
     redirect: function redirect(params) {
       console.log("/" + params);
       window.location.href = "/" + this.userName + "/" + params;
     },
+    backRedirect: function backRedirect() {
+      window.location.href = "/" + this.userName;
+    },
     checkIfLogged: function checkIfLogged() {
-      var _this = this;
+      var _this2 = this;
 
       axios.post("/api/checkLogged", {
         token: this.csrf
@@ -5378,9 +5497,9 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data.success === 0) {
           window.location.href = "/login";
         } else {
-          _this.success = response.data.success;
-          console.log(_this.success);
-          _this.userName = response.data.username;
+          _this2.success = response.data.success;
+          console.log(_this2.success);
+          _this2.userName = response.data.username;
         }
       })["catch"](function (error) {
         console.log(error);
@@ -29276,9 +29395,152 @@ var render = function () {
     ? _c("div", { staticClass: "container test" }, [
         _c("div", { staticClass: "exeTest" }, [
           this.currentUrl === "/" + this.userName + "/exercise"
-            ? _c("div", [_c("h1", [_vm._v("Exercises")])])
+            ? _c("div", [
+                _c("h1", [_vm._v("Exercises")]),
+                _vm._v(" "),
+                _vm.correct !== 2
+                  ? _c(
+                      "form",
+                      {
+                        attrs: { id: "checkWord" },
+                        on: {
+                          submit: function ($event) {
+                            $event.preventDefault()
+                            return _vm.exerciseCheck()
+                          },
+                        },
+                      },
+                      [
+                        _c("h2", { staticStyle: { color: "white" } }, [
+                          _vm._v(_vm._s(_vm.currentWord)),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          ref: "insWord",
+                          attrs: {
+                            name: "insWord",
+                            placeholder: "Enter this but in Polish",
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm.correct === -1
+                          ? _c("h3", { staticStyle: { color: "red" } }, [
+                              _vm._v(
+                                "Nope! Correct: " + _vm._s(_vm.translatedWord)
+                              ),
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.correct === 1
+                          ? _c("h3", { staticStyle: { color: "green" } }, [
+                              _vm._v("Correct!"),
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.correct === 0
+                          ? _c("input", {
+                              attrs: {
+                                type: "submit",
+                                id: "submitEx",
+                                value: "Check",
+                              },
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.correct !== 0
+                          ? _c(
+                              "button",
+                              {
+                                on: {
+                                  click: function ($event) {
+                                    _vm.excludeExercise(
+                                      _vm.currentWord.toLowerCase()
+                                    )
+                                  },
+                                },
+                              },
+                              [_vm._v("Przejdź dalej")]
+                            )
+                          : _vm._e(),
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.correct === 2
+                  ? _c("h3", { staticStyle: { color: "green" } }, [
+                      _vm._v("You have answered all questions correctly!"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.correct === 2
+                  ? _c(
+                      "button",
+                      {
+                        on: {
+                          click: function ($event) {
+                            return _vm.backRedirect()
+                          },
+                        },
+                      },
+                      [_vm._v("Go back!")]
+                    )
+                  : _vm._e(),
+              ])
             : this.currentUrl === "/" + this.userName + "/test"
-            ? _c("div", [_c("h1", [_vm._v("Tests")])])
+            ? _c("div", [
+                _c("h1", [_vm._v("Tests")]),
+                _vm._v(" "),
+                _vm.correct !== 2
+                  ? _c(
+                      "form",
+                      {
+                        attrs: { id: "checkTest" },
+                        on: {
+                          submit: function ($event) {
+                            $event.preventDefault()
+                            return _vm.testCheck()
+                          },
+                        },
+                      },
+                      [
+                        _c("h2", { staticStyle: { color: "white" } }, [
+                          _vm._v(_vm._s(_vm.currentWord)),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          ref: "insWord",
+                          attrs: {
+                            name: "insWord",
+                            placeholder: "Enter this but in Polish",
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "submit",
+                            id: "submitTest",
+                            value: "Next Word",
+                          },
+                        }),
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.correct === 2
+                  ? _c("h3", { staticStyle: { color: "white" } }, [
+                      _vm._v(
+                        "Your score: " +
+                          _vm._s(_vm.score) +
+                          "/" +
+                          _vm._s(_vm.wordsPool.length) +
+                          " (" +
+                          _vm._s(_vm.scorePrec) +
+                          "%) " +
+                          _vm._s(_vm.pass)
+                      ),
+                    ])
+                  : _vm._e(),
+              ])
             : _c("div", [
                 _c("h1", [_vm._v("Select Page")]),
                 _vm._v(" "),
