@@ -5364,6 +5364,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ExerTest",
   data: function data() {
@@ -29395,7 +29433,7 @@ var render = function () {
     ? _c("div", { staticClass: "container test" }, [
         _c("div", { staticClass: "exeTest" }, [
           this.currentUrl === "/" + this.userName + "/exercise"
-            ? _c("div", [
+            ? _c("div", { staticClass: "exercises" }, [
                 _c("h1", [_vm._v("Exercises")]),
                 _vm._v(" "),
                 _vm.correct !== 2
@@ -29411,9 +29449,7 @@ var render = function () {
                         },
                       },
                       [
-                        _c("h2", { staticStyle: { color: "white" } }, [
-                          _vm._v(_vm._s(_vm.currentWord)),
-                        ]),
+                        _c("h2", [_vm._v('"' + _vm._s(_vm.currentWord) + '"')]),
                         _vm._v(" "),
                         _c("input", {
                           ref: "insWord",
@@ -29426,7 +29462,9 @@ var render = function () {
                         _vm.correct === -1
                           ? _c("h3", { staticStyle: { color: "red" } }, [
                               _vm._v(
-                                "Nope! Correct: " + _vm._s(_vm.translatedWord)
+                                "\n          Nope! Correct: " +
+                                  _vm._s(_vm.translatedWord) +
+                                  "\n        "
                               ),
                             ])
                           : _vm._e(),
@@ -29439,6 +29477,7 @@ var render = function () {
                         _vm._v(" "),
                         _vm.correct === 0
                           ? _c("input", {
+                              staticClass: "checkbtn",
                               attrs: {
                                 type: "submit",
                                 id: "submitEx",
@@ -29459,7 +29498,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v("Przejdź dalej")]
+                              [_vm._v("\n          Przejdź dalej\n        ")]
                             )
                           : _vm._e(),
                       ]
@@ -29468,7 +29507,9 @@ var render = function () {
                 _vm._v(" "),
                 _vm.correct === 2
                   ? _c("h3", { staticStyle: { color: "green" } }, [
-                      _vm._v("You have answered all questions correctly!"),
+                      _vm._v(
+                        "\n        You have answered all questions correctly!\n      "
+                      ),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
@@ -29487,7 +29528,7 @@ var render = function () {
                   : _vm._e(),
               ])
             : this.currentUrl === "/" + this.userName + "/test"
-            ? _c("div", [
+            ? _c("div", { staticClass: "tests" }, [
                 _c("h1", [_vm._v("Tests")]),
                 _vm._v(" "),
                 _vm.correct !== 2
@@ -29503,9 +29544,7 @@ var render = function () {
                         },
                       },
                       [
-                        _c("h2", { staticStyle: { color: "white" } }, [
-                          _vm._v(_vm._s(_vm.currentWord)),
-                        ]),
+                        _c("h2", [_vm._v('"' + _vm._s(_vm.currentWord) + '"')]),
                         _vm._v(" "),
                         _c("input", {
                           ref: "insWord",
@@ -29529,14 +29568,15 @@ var render = function () {
                 _vm.correct === 2
                   ? _c("h3", { staticStyle: { color: "white" } }, [
                       _vm._v(
-                        "Your score: " +
+                        "\n        Your score: " +
                           _vm._s(_vm.score) +
                           "/" +
                           _vm._s(_vm.wordsPool.length) +
                           " (" +
                           _vm._s(_vm.scorePrec) +
-                          "%) " +
-                          _vm._s(_vm.pass)
+                          "%)\n        " +
+                          _vm._s(_vm.pass) +
+                          "\n      "
                       ),
                     ])
                   : _vm._e(),
@@ -29544,29 +29584,31 @@ var render = function () {
             : _c("div", [
                 _c("h1", [_vm._v("Select Page")]),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function ($event) {
-                        return _vm.redirect("exercise")
+                _c("div", { staticClass: "row-log" }, [
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.redirect("exercise")
+                        },
                       },
                     },
-                  },
-                  [_vm._v("Exercise")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function ($event) {
-                        return _vm.redirect("test")
+                    [_vm._v("Exercise")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.redirect("test")
+                        },
                       },
                     },
-                  },
-                  [_vm._v("Test")]
-                ),
+                    [_vm._v("Test")]
+                  ),
+                ]),
               ]),
         ]),
       ])
@@ -29659,7 +29701,7 @@ var render = function () {
                 }),
                 _vm._v(" "),
                 _c("input", {
-                  staticClass: "btn-form",
+                  staticClass: "loginbtn",
                   attrs: { type: "submit", value: "Zaloguj" },
                 }),
                 _vm._v(" "),
@@ -29788,7 +29830,7 @@ var render = function () {
                 }),
                 _vm._v(" "),
                 _c("input", {
-                  staticClass: "btn-form",
+                  staticClass: "loginbtn",
                   attrs: { type: "submit", value: "Zarejestruj" },
                 }),
               ]

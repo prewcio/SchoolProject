@@ -11,7 +11,7 @@
             name="password"
             v-model="password"
           />
-          <input type="submit" value="Zaloguj" class="btn-form" />
+          <input type="submit" value="Zaloguj" class="loginbtn" />
           <p style="color: red" v-if="error === 1">Konto nie istnieje</p>
           <p style="color: red" v-if="error === 2">Błędny login lub hasło</p>
           <p style="color: red" v-if="error === 3">
@@ -39,7 +39,7 @@
             placeholder="Password"
             v-model="password"
           />
-          <input type="submit" value="Zarejestruj" class="btn-form" />
+          <input type="submit" value="Zarejestruj" class="loginbtn" />
         </form>
       </div>
     </div>
