@@ -5629,7 +5629,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    // this.checkIfLogged();
+    this.checkIfLogged();
     var currentUrl = window.location.pathname;
     this.logreg = currentUrl;
   },
@@ -5691,7 +5691,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       axios.post("/api/checkLogged", {
         token: this.csrf
       }).then(function (response) {
-        if (response.data.success == 1) {
+        if (response.data.success === 1) {
           window.location.href = "/" + data.username;
         }
       })["catch"](function (error) {

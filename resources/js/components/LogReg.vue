@@ -62,7 +62,7 @@ export default {
     };
   },
   mounted() {
-    // this.checkIfLogged();
+    this.checkIfLogged();
     var currentUrl = window.location.pathname;
     this.logreg = currentUrl;
   },
@@ -97,7 +97,7 @@ export default {
           token: this.csrf,
         })
         .then((response) => {
-          if (response.data.success == 1) {
+          if (response.data.success === 1) {
             window.location.href = "/" + data.username;
           }
         })
