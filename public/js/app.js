@@ -29922,7 +29922,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v(_vm._s(_vm.username))]
+                [_vm._v("ACCOUNT")]
               ),
             ])
           : _vm._e(),

@@ -5,7 +5,7 @@
     </div>
     <nav>
       <ul>
-          <li v-if="success===1"><a @click="redirect(username)">{{username}}</a></li>
+          <li v-if="success===1"><a @click="redirect(username)">ACCOUNT</a></li>
           <li v-if="success===1"><a @click="logout()">LOGOUT</a></li>
           <li v-if="success===0"><a @click="redirect('register')">START</a></li>
           <li v-if="success===0"><a @click="redirect('login')">LOGIN</a></li>
