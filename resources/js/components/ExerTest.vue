@@ -53,6 +53,7 @@
             placeholder="Enter this but in Polish"
           />
           <input type="submit" id="submitTest" value="Next Word" />
+          <h4>{{question}}/{{wordsPool.length}}</h4>
         </form>
         <h3 v-if="correct === 2" style="color: white">
           Your score: {{ score }}/{{ wordsPool.length }} ({{ scorePrec }}%)
