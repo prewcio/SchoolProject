@@ -47,7 +47,6 @@ export default {
               })
               .then((response) => {
                   if (response.data.success === 1) {
-                      console.log(response.data);
                       this.success = response.data.success;
                       this.username = response.data.username;
                   }

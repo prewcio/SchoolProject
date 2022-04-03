@@ -98,7 +98,7 @@ export default {
         })
         .then((response) => {
           if (response.data.success === 1) {
-            window.location.href = "/" + data.username;
+            window.location.href = "/" + response.data.username;
           }
         })
         .catch(function (error) {

@@ -5289,10 +5289,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      success: 0,
+      userName: "",
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+    };
+  },
   methods: {
     redirect: function redirect(params) {
       window.location.href = "/" + params;
+    },
+    logout: function logout() {
+      axios.post('/api/logout', {
+        token: this.csrf
+      }).then(function (response) {
+        location.href = "/";
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     checkIfLogged: function checkIfLogged() {
       var _this = this;
@@ -5300,12 +5318,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("/api/checkLogged", {
         token: this.csrf
       }).then(function (response) {
-        console.log(response.data);
+        console.log(response.data.success);
 
         if (response.data.success === 1) {
           _this.success = response.data.success;
           _this.userName = response.data.username;
-          window.location.href = "/" + _this.userName;
         }
       })["catch"](function (error) {
         console.log(error);
@@ -5692,7 +5709,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         token: this.csrf
       }).then(function (response) {
         if (response.data.success === 1) {
-          window.location.href = "/" + data.username;
+          window.location.href = "/" + response.data.username;
         }
       })["catch"](function (error) {
         console.log(error);
@@ -5803,7 +5820,6 @@ __webpack_require__.r(__webpack_exports__);
         token: this.csrf
       }).then(function (response) {
         if (response.data.success === 1) {
-          console.log(response.data);
           _this.success = response.data.success;
           _this.username = response.data.username;
         }
@@ -29414,29 +29430,61 @@ var render = function () {
       _c("h1", [_vm._v("Free site to learn language!")]),
       _vm._v(" "),
       _c("div", { staticClass: "buttons" }, [
-        _c(
-          "button",
-          {
-            on: {
-              click: function ($event) {
-                return _vm.redirect("register")
+        _vm.success === 0
+          ? _c(
+              "button",
+              {
+                on: {
+                  click: function ($event) {
+                    return _vm.redirect("register")
+                  },
+                },
               },
-            },
-          },
-          [_vm._v("START")]
-        ),
+              [_vm._v("START")]
+            )
+          : _vm._e(),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function ($event) {
-                return _vm.redirect("login")
+        _vm.success === 0
+          ? _c(
+              "button",
+              {
+                on: {
+                  click: function ($event) {
+                    return _vm.redirect("login")
+                  },
+                },
               },
-            },
-          },
-          [_vm._v("LOGIN")]
-        ),
+              [_vm._v("LOGIN")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.success === 1
+          ? _c(
+              "button",
+              {
+                on: {
+                  click: function ($event) {
+                    return _vm.redirect(_vm.userName)
+                  },
+                },
+              },
+              [_vm._v("ACCOUNT")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.success === 1
+          ? _c(
+              "button",
+              {
+                on: {
+                  click: function ($event) {
+                    return _vm.logout()
+                  },
+                },
+              },
+              [_vm._v("LOGOUT")]
+            )
+          : _vm._e(),
       ]),
     ]),
   ])
