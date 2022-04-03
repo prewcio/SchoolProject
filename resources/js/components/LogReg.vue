@@ -72,7 +72,7 @@ export default {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          login: this.login,
+          login: this.login.toLowerCase(),
           password: this.password,
           token: this.csrf,
         }),
@@ -110,8 +110,8 @@ export default {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          login: this.login,
-          email: this.email,
+          login: this.login.toLowerCase(),
+          email: this.email.toLowerCase(),
           password: this.password,
           token: this.csrf,
         }),
@@ -120,7 +120,7 @@ export default {
       this.error = data.error;
       this.success = data.success;
       if (this.success === 1) {
-        // window.location.href = "/account";
+        window.location.href = "/"+this.login.toLowerCase();
       }
     },
   },

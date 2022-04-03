@@ -5364,6 +5364,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ExerTest",
   data: function data() {
@@ -5611,7 +5612,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     "Content-Type": "application/json"
                   },
                   body: JSON.stringify({
-                    login: _this.login,
+                    login: _this.login.toLowerCase(),
                     password: _this.password,
                     token: _this.csrf
                   })
@@ -5675,8 +5676,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     "Content-Type": "application/json"
                   },
                   body: JSON.stringify({
-                    login: _this2.login,
-                    email: _this2.email,
+                    login: _this2.login.toLowerCase(),
+                    email: _this2.email.toLowerCase(),
                     password: _this2.password,
                     token: _this2.csrf
                   })
@@ -5692,7 +5693,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.error = data.error;
                 _this2.success = data.success;
 
-                if (_this2.success === 1) {// window.location.href = "/account";
+                if (_this2.success === 1) {
+                  window.location.href = "/" + _this2.login.toLowerCase();
                 }
 
               case 9:
@@ -5733,14 +5735,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      success: 0,
+      username: "",
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+    };
+  },
   methods: {
     redirect: function redirect(params) {
       window.location.href = "/" + params;
+    },
+    logout: function logout() {
+      axios.post('/api/logout', {
+        token: this.csrf
+      }).then(function (response) {
+        location.href = "/";
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    checkIfLogged: function checkIfLogged() {
+      var _this = this;
+
+      axios.post("/api/checkLogged", {
+        token: this.csrf
+      }).then(function (response) {
+        if (response.data.success === 1) {
+          console.log(response.data);
+          _this.success = response.data.success;
+          _this.username = response.data.username;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   mounted: function mounted() {
-    console.log("Component mounted.");
+    this.checkIfLogged();
   }
 });
 
@@ -29522,6 +29557,15 @@ var render = function () {
                             value: "Next Word",
                           },
                         }),
+                        _vm._v(" "),
+                        _c("h4", { staticStyle: { color: "white" } }, [
+                          _vm._v(
+                            "Question: " +
+                              _vm._s(_vm.question) +
+                              "/" +
+                              _vm._s(_vm.wordsPool.length)
+                          ),
+                        ]),
                       ]
                     )
                   : _vm._e(),
@@ -29826,33 +29870,69 @@ var render = function () {
     _vm._v(" "),
     _c("nav", [
       _c("ul", [
-        _c("li", [
-          _c(
-            "a",
-            {
-              on: {
-                click: function ($event) {
-                  return _vm.redirect("register")
+        _vm.success === 1
+          ? _c("li", [
+              _c(
+                "a",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.redirect(_vm.username)
+                    },
+                  },
                 },
-              },
-            },
-            [_vm._v("START")]
-          ),
-        ]),
+                [_vm._v(_vm._s(_vm.username))]
+              ),
+            ])
+          : _vm._e(),
         _vm._v(" "),
-        _c("li", [
-          _c(
-            "a",
-            {
-              on: {
-                click: function ($event) {
-                  return _vm.redirect("login")
+        _vm.success === 1
+          ? _c("li", [
+              _c(
+                "a",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.logout()
+                    },
+                  },
                 },
-              },
-            },
-            [_vm._v("LOGIN")]
-          ),
-        ]),
+                [_vm._v("LOGOUT")]
+              ),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.success === 0
+          ? _c("li", [
+              _c(
+                "a",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.redirect("register")
+                    },
+                  },
+                },
+                [_vm._v("START")]
+              ),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.success === 0
+          ? _c("li", [
+              _c(
+                "a",
+                {
+                  on: {
+                    click: function ($event) {
+                      return _vm.redirect("login")
+                    },
+                  },
+                },
+                [_vm._v("LOGIN")]
+              ),
+            ])
+          : _vm._e(),
       ]),
     ]),
   ])

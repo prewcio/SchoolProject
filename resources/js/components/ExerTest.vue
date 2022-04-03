@@ -20,6 +20,7 @@
             <h2 style="color:white">{{currentWord}}</h2>
             <input name="insWord" ref="insWord" placeholder="Enter this but in Polish">
             <input type="submit" id="submitTest" value="Next Word">
+            <h4 style="color:white">Question: {{question}}/{{wordsPool.length}}</h4>
           </form>
           <h3 v-if="correct===2" style="color: white">Your score: {{score}}/{{wordsPool.length}} ({{scorePrec}}%) {{pass}}</h3>
       </div>
